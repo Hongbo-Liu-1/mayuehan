@@ -1,0 +1,63 @@
+node_modules/
+.DS_Store
+.git/
+
+# compiled from ts
+libs/ExitHandlingService.js
+
+# compiled from ts
+model/Table.js
+
+# compiled from ts
+model/Result.js
+
+# compiled from ts
+services/ActiveVersionDatabaseService.js
+
+# compiled from ts
+services/WebAppService.js
+
+# compiled from ts
+services/ConfigService.js
+
+# compiled from ts
+src/RegApi.js
+
+# compiled from ts
+src/RegSportEvent.js
+
+# compiled from ts
+src/RegRunning.js
+
+# compiled from ts
+src/RegBadminton.js
+
+# compiled from ts
+src/RegDownload.js
+
+# compiled from ts
+src/UserApi.js
+
+# compiled from ts
+src/TeamApi.js
+
+# compiled from ts
+src/Team.js
+
+# compiled from ts
+src/PointApi.js
+
+# compiled from ts
+src/RegPlayer.js
+
+# compiled from ts
+src/RegCommon.js
+
+# compiled from ts
+src/DbAccess.js
+
+# compiled from ts
+src/RegRunningAndMorning.js
+
+# compiled from ts
+src/RegMeet.js
