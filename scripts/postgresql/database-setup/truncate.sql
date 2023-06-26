@@ -1,0 +1,1 @@
+truncate table recording_archive;

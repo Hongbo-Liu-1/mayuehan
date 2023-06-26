@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ../partials/header.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav.ejs %>
+
+    <% if (results.status == 0 && !results.message) {
+        const u = results.data;
+    %>
+
+    <form action="/user/password/<%= u.id %>" method="post">
+      <input type="hidden" name="id" value="<%= u.id %>">
+      <table>
+        <tr>
+          <th>ID</th>
+          <td><%= u.id %></td>
+        </tr>
+        <tr>
+          <th>user Name</th>
+          <td><%= u.user_name %></td>
+        </tr>
+        <tr>
+          <th>Password</th>
+          <td><input class="password" type="password" name="password"></td>
+        </tr>
+        <tr>            
+          <th>User Type</th>
+          <td><%= u.user_type %></td>
+        </tr>
+        <tr>            
+          <th>Sport ID</th>
+          <td><%= u.sport_id %></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+              <input class='actionbtn' type="submit" name="save" value="Save">
+            </td>
+          </tr>
+      </table>
+    </form>
+    
+    <% } else { %>
+      <h3> <%= results.message %> </h3>
+    <% } %>
+  </div>
+</body>
+
+</html>

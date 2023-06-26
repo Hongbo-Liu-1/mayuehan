@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navreg.ejs %>
+
+    <h2>大会注册</h2>
+    <p>
+      上传并比较校友大会的注册文件与积分系统中的比赛选手数据。
+      文件必须是Excel格式(.xlsx)。
+
+        <p>&nbsp;</p>
+        <form class="upload" action="/reg/upload1" method="post" enctype="multipart/form-data">
+          <table style='border:0'>
+            <tr>
+              <td style='border:0'><label for="players">注册文件:</label></td>
+              <td style='border:0'><input type="file" name="players" id="players" accept=".xlsx"></td>
+            </tr>
+            <tr>
+              <td style='border:0'>&nbsp;<input type="hidden" name="action" value="<%= results.data %>"></td>
+              <td style='border:0'><input type="submit" name="submit" value="开始上传" name="submit"></td>
+            </tr>
+          </table>
+        </form>
+
+  </div>
+</body>
+</html>

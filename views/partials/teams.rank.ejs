@@ -1,0 +1,58 @@
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("[id|=rank]").focusin(function () {
+            $(this).css("background-color", "#FFFFCC");
+        });
+
+        $("[id|=teamName]").focusin(function () {
+            $(this).css("background-color", "#FFFFCC");
+        });
+
+        $("[id|=rank]").blur(function () {
+            $(this).css("background-color", "#FFFFFF");
+            if ($(this).val() != $(this).prop("defaultValue")) {
+                if (isNaN($(this).val()) || +$(this).val() > 8) {
+                    alert("Value must be a number in range 1-8.");
+                    $(this).css("background-color", "#FF8080");
+                    $(this).focus();
+                } else {
+                    // post here
+                    $.post("/team/rank",
+                        {
+                            teamId: +$(this).attr("id").slice(5),  // extract teamId from 'rank-<teamId>'
+                            rank: +$(this).val()
+                        },
+                        function (data, status) {
+                            //alert("Data: " + data + "\nStatus: " + status);
+                        }
+                    ).fail(e => {
+                        alert(JSON.stringify(e));
+                        $(this).css("background-color", "#FF8080");
+                    });
+                }
+            }
+        });
+
+        $("[id|=teamName]").blur(function () {
+            $(this).css("background-color", "#FFFFFF");
+            if ($(this).val() != $(this).prop("defaultValue")) {
+                // post here
+                $.post("/team/teamName",
+                    {
+                        teamId: +$(this).attr("id").slice('teamName-'.length),  // extract teamId from 'teamName-<teamId>'
+                        teamName: $(this).val()
+                    },
+                    function (data, status) {
+                        //alert("Data: " + data + "\nStatus: " + status);
+                    }
+                ).fail(e => {
+                    alert(JSON.stringify(e));
+                    $(this).css("background-color", "#FF8080");
+                });
+            }
+        });
+    });
+
+</script>

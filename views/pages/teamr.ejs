@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ../partials/header.ejs %>
+
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navTeams.ejs %>
+
+    <% if (results.status == 0) { %>
+
+    <h2><%= results.data.event.sport_name %> - <%= results.data.event.cname %></h2>
+
+    <h3> <%= results.message %> </h3>
+
+    <table>
+        <tr>
+          <th>组号</th>
+          <td><%= results.data.team.id %></td>
+        </tr>
+        <tr>
+          <th>组名</th>
+          <td><%= results.data.team.team_name %></td>
+        </tr>
+
+        <% for (let i=0; i<results.data.event.team_size; i++) { 
+            let p = { cname: ' ' };
+            if (results.data.team.players[i]) {
+              p = results.data.team.players[i].player;
+            }
+        %>
+
+        <tr>
+          <th>组员</th>
+          <td><%= p.cname || p.first_name + ' ' + p.last_name %></td>
+        </tr>
+        <% } %>
+
+        <tr>
+          <th>名次</th>
+          <td><%= results.data.team.rank %></td>
+        </tr>
+        <tr>
+          <th>积分</th>
+          <td><%= results.data.team.points %></td>
+        </tr>
+
+    </table>
+
+    <% } else { %>
+    <h3> <%= results.message %> </h3>
+    <% } %>
+
+  </div>
+</body>
+
+</html>

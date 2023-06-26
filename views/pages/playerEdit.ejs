@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navreg.ejs %>
+
+    <h2>选手编辑</h2>
+
+    <% if (results.status == 0) { %>
+
+    <% const r = results.data.player; %>
+
+    <h4>个人信息：</h4>
+
+    <form action="/reg/player/<%= results.data.player.id || 'New' %>" method="post">
+    <input type="hidden" name="id" value="<%= r.id %>">
+    <table>
+        <tr>
+          <th>编号</th>
+          <td><%= r.id %></td>
+        </tr>
+        <tr>
+          <th>中文名</th>
+          <td><input class="teamname" type="text" name='cname' value="<%= r.cname %>"></td>
+        </tr>
+        <tr>
+          <th>First Name</th>
+          <td><input class="teamname" type="text" name='first_name' value="<%= r.first_name %>"></td>
+        </tr>
+        <tr>
+          <th>Last Name</th>
+          <td><input class="teamname" type="text" name='last_name' value="<%= r.last_name %>"></td>
+        </tr>
+        <tr>
+          <th>性别</th>
+          <td>
+            <select class="tpname" name='gender'>
+              <option value="男"<%= r.gender == '男' ? ' selected' : '' %>>男</option>>
+              <option value="女"<%= r.gender == '女' ? ' selected' : '' %>>女</option>>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>院系</th>
+          <td>
+            <select class="tpname" name='th_department_id'>
+                <option value="-1"></option>
+
+              <% results.data.departments.forEach(c => { %>
+                <option value="<%= c.id %>"<%= (c.id == r.th_department_id) ? ' selected' : '' %>><%= c.cname %></option>
+              <% }) %>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>分会</th>
+          <td>
+            <select class="tpname" name='th_association_id'>
+              <option value="-1"></option>
+
+            <% results.data.associations.forEach(c => { %>
+              <option value="<%= c.id %>"<%= (c.id == r.th_association_id) ? ' selected' : '' %>><%= c.cname %></option>
+            <% }) %>
+          </select>
+          </td>
+        </tr>
+        <tr>
+          <th>体育项目</th>
+          <td>
+            <select class="tpname" id='sportId-<%= r.id %>' name='sport_id'>
+              <option value="-1"></option>
+
+              <% results.data.sports.forEach(c => { %>
+                <option value="<%= c.id %>"<%= (c.id == r.sport_id) ? ' selected' : '' %>><%= c.cname %></option>
+              <% }) %>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>
+            <input class='actionbtn' type="submit" name="save" value="Save">
+            <% if (user.user_type == 'ops') { %>
+            <input class='actionbtn' type="submit" name="delete" value="Delete" onclick="return confirm('Are you sure you want to delete the player ?');">
+            <% } %>
+          </td>
+        </tr>
+    </table>
+    </form>
+
+    <% } else { %>
+    <h3> <%= results.message %> </h3>
+    <% } %>
+  </div>
+</body>
+
+</html>

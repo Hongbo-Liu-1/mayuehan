@@ -1,0 +1,14 @@
+db:
+  host: 127.0.0.1:5432
+  database: postgres
+  username: mayuehan
+  password: password
+  ssl: false
+
+#  host: ec2-54-221-212-126.compute-1.amazonaws.com:5432
+#  database: db87el385eaf8
+#  username: vkxclrrzjjslcl
+#  password: 7535fcbcf4844312c40e148cd0945d8b20413a7b127c2b1ab652f66057eba79d
+#  ssl: true
+
+# DATABASE_URL: postgres://vkxclrrzjjslcl:7535fcbcf4844312c40e148cd0945d8b20413a7b127c2b1ab652f66057eba79d@ec2-54-221-212-126.compute-1.amazonaws.com:5432/db87el385eaf8

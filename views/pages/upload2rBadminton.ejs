@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Show upload result for Badminton -->
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navreg.ejs %>
+
+    <h2>比赛报名匹配结果</h2>
+
+    <% if (results.status == 0) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>姓名</th>
+          <th>报名项目</th>
+          <th>女双搭档</th>
+          <th>男双搭档</th>
+          <th>混双搭档</th>
+          <th>水平范围</th>
+          <th>-</th>
+          <th>编号</th>
+          <th>中文名</th>
+          <th>英文名</th>
+          <th>性别</th>
+          <th>院系</th>
+          <th>分会</th>
+          <th>类别</th>
+          <th>积分</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% results.data.sheet.forEach(q => { 
+          r = q.player || {};
+        %>
+        <tr>
+          <td><%= q['序号'] %></td>
+          <td><%= q['姓名'] %></td>
+          <td><%= q['报名项目'] %></td>
+          <td><%= q['女双搭档'] %></td>
+          <td><%= q['男双搭档'] %></td>
+          <td><%= q['混双搭档'] %></td>
+          <td><%= q['水平范围'] %></td>
+          <td>-</td>
+          <td><%= r.id %></td>
+          <td><%= r.cname %></td>
+          <td><%= r.first_name %> <%= r.last_name %></td>
+          <td><%= r.gender %></td>
+          <td><%= r.th_department_name %></td>
+          <td><%= r.th_association_name %></td>
+          <td><%= r.sport_name %></td>
+          <td><%= r.points %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <% for (const eventId in results.data.eventMap) { %>
+
+    <h2><%= results.data.eventMap[eventId].cname %></h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>中文名</th>
+          <th>英文名</th>
+          <th>性别</th>
+          <% if (results.data.eventMap[eventId].team_size > 1) { %>
+          <th>-</th>
+          <th>编号</th>
+          <th>中文名</th>
+          <th>英文名</th>
+          <th>性别</th>
+          <% } %>
+        </tr>
+      </thead>
+      <tbody>
+
+      <% 
+        let teams = [];
+        let teamMap = results.data.teamMap[eventId];
+        for (const name in teamMap) { 
+            const team = teamMap[name];
+            if (teams.indexOf(team) >= 0) {
+                continue;
+            }
+            teams.push(team);
+            const r = team.players[0];
+            const p = team.players[1] || {};
+        %>
+        <tr>
+          <td><%= r.id %></td>
+          <td><%= r.cname %></td>
+          <td><%= r.first_name %> <%= r.last_name %></td>
+          <td><%= r.gender %></td>
+          <% if (results.data.eventMap[eventId].team_size > 1) { %>
+          <td>-</td>
+          <td><%= p.id %></td>
+          <td><%= p.cname %></td>
+          <td><%= p.first_name %> <%= p.last_name %></td>
+          <td><%= p.gender %></td>
+          <% } %>
+        </tr>
+        <% }; %>
+      </tbody>
+    </table>
+
+    <% } %>
+
+    <% } else { %>
+    <h3> <%= results.message %> </h3>
+    <% } %>
+
+  </div>
+  <p>
+    &nbsp;
+    <p>
+</body>
+
+</html>

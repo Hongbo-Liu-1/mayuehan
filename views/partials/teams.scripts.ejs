@@ -1,0 +1,96 @@
+<script type="text/javascript">
+
+$(document).ready(function () {
+    var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+    ];
+    $("#tags").autocomplete({
+        source: availableTags, // uncomment this and comment the following to have normal autocomplete behavior
+        //source: function (request, response) {
+        //    response( availableTags);
+        //},
+        minLength: 0
+    }).focus(function () {
+        //        $(this).data("uiAutocomplete").search($(this).val()); // uncomment this and comment the following to have autocomplete behavior when opening
+        $(this).data("uiAutocomplete").search('');
+    });
+    /*
+    $("[id|=tp-]").focusin(function () {
+        $(this).css("background-color", "#FFFFCC");
+    });
+*/
+
+var availableTags2 = ['abc', 'def'];
+
+    $("[id|=tpname]").autocomplete({
+        source: "<%= results.data.candidates %>",
+        //results.data.candidates, // uncomment this and comment the following to have normal autocomplete behavior
+        //source: function (request, response) {
+        //    response( availableTags);
+        //},
+        minLength: 0
+    }).focus(function () {
+        //        $(this).data("uiAutocomplete").search($(this).val()); // uncomment this and comment the following to have autocomplete behavior when opening
+        $(this).data("uiAutocomplete").search('');
+    });
+
+    $("[id|=tpname]").blur(function () {
+        $(this).css("background-color", "#FFFFFF");
+        if ($(this).val() != $(this).prop("defaultValue")) {
+
+            if ($(this).val().trim().length == 0) {
+                alert("Value must be a string.");
+                $(this).css("background-color", "#FF8080");
+                $(this).focus();
+            } else {
+                
+                alert("Ready to post: $(this).val().trim()");
+                /*
+                // post here
+                $.post("/team/player",
+                    {
+                        teamId: $(this).attr("id").slice(8),  // extract teamId from tpname-2-<teamId>
+                        playerName: $(this).val().trim(),
+                        sportId: <%= results.data.event.sport_id %>,
+                        eventId: <%= results.data.event.id %>
+                    },
+                    function (data, status) {
+                        //alert("Data: " + data + "\nStatus: " + status);
+                        //TODO: modify teamId, and other player's attributes
+                    }
+                ).fail(e => {
+                    alert(JSON.stringify(e));
+                    $(this).css("background-color", "#FF8080");
+                });
+                */
+            }
+        }
+
+        //$("#abc").val($("#first").prop("defaultValue"));
+        //alert("Value: " + $(this).val() + ", default:" + $(this).prop("defaultValue") + ", id: " + $(this).attr("id") );
+    });
+
+});
+
+</script>

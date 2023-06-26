@@ -1,0 +1,49 @@
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("[id|=online_run_rank]").focusin(function () {
+            $(this).css("background-color", "#FFFFCC");
+        });
+
+        $("[id|=online_run_join]").change(function () {
+            $.post("/point/onlineRunJoin",
+                {
+                    associationId: +$(this).attr("id").slice('online_run_join-'.length),  // extract associationId from 'online_run_rank-<associationId>'
+                    onlineRunJoin: $(this).prop('checked')
+                },
+                function (data, status) {
+                    //alert("Data: " + data + "\nStatus: " + status);
+                }
+            ).fail(e => {
+                alert(JSON.stringify(e));
+            });
+        });
+
+        $("[id|=online_run_rank]").blur(function () {
+            $(this).css("background-color", "#FFFFFF");
+            if ($(this).val() != $(this).prop("defaultValue")) {
+                if (isNaN($(this).val())) {
+                    alert("Value must be a number.");
+                    $(this).css("background-color", "#FF8080");
+                    $(this).focus();
+                } else {
+                    // post here
+                    $.post("/point/onlineRunRank",
+                        {
+                            associationId: +$(this).attr("id").slice('online_run_rank-'.length),  // extract associationId from 'online_run_rank-<associationId>'
+                            onlineRunRank: +$(this).val()
+                        },
+                        function (data, status) {
+                            //alert("Data: " + data + "\nStatus: " + status);
+                        }
+                    ).fail(e => {
+                        alert(JSON.stringify(e));
+                        $(this).css("background-color", "#FF8080");
+                    });
+                }
+            }
+        });
+    });
+
+</script>

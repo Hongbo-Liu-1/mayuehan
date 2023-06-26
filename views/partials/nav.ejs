@@ -1,0 +1,36 @@
+<div class="topnav">
+    
+    <a class="topnav-header topnav-brand" href="/">马约翰杯</a>
+
+    <% if (typeof user == 'object' && user.user_type == 'ops') { %>
+        <a href="/reg/sports">注册</a>
+    <% } %>
+
+    <% if (typeof user == 'object' && user.sport_id) { %>
+        <a href="/players/<%= user.sport_id %>?orderBy='points DESC'">组队</a>
+    <% } else { %>
+        <a href="/players/3?orderBy='points DESC'">组队</a>
+    <% } %>
+    <!--
+    <a href="/match">比赛</a>
+    <a href="/score">成绩</a>
+    <a href="/rank">排名</a>
+    -->
+    <a href="/point/players?orderBy='points DESC'">积分</a>
+
+    <div class="topnav-right">
+        <% if (typeof user == 'object') { %>
+            <div class="dropdown">
+                <button class="dropbtn"><%= user.user_name %></button>
+                <div class="dropdown-content">
+                    <a href="/user/logout">退出</a>
+                    <% if (user.user_type != 'guest') { %>
+                    <a href="/user/profile">修改密码</a>
+                    <% } %>
+                </div>
+            </div>
+        <% } else { %>
+            <a href="/user/login">Login</a>
+        <% } %>
+    </div>
+</div> 

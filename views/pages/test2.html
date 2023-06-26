@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+
+<style> 
+.topnav {
+    background-color: #845ac7;
+    overflow: hidden;
+}
+.topnav .topnav-brand {
+    position: relative;
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: left 50%;
+    /*
+    padding-left: 36px;
+    */
+    font-size: 20px;
+    letter-spacing: -0.04rem;
+    color: white;
+    /*
+    min-height: 50px;
+    */
+    padding-top: 15px;
+    line-height: 20px
+}
+.topnav a {
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 10px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover, .dropdown:hover .dropbtn {
+    background-color: #9b313f;
+}
+
+/* Add a color to the active/current link */
+
+.topnav a.active {
+    background-color: #a46ad7;
+    color: white;
+}
+
+
+.table-bordered {
+    border: 1px solid #0072be;
+}
+
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border: 1px solid #0072be;
+}
+
+.table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border-bottom-width: 2px
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 10px;
+}
+
+th {
+    text-align: center;
+    background-color: #b3deff;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+tr.nohover:hover {
+    background-color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+.actionbtn {
+  background-color: #9b313f;
+  border: 2px solid #E0E0E0;
+  color: white;
+  padding: 8px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.actionbtn:hover {
+  background-color: #fb311f;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+ <div class="container">
+    <div class="topnav">
+    
+    <a class="topnav-header topnav-brand" href="/">马约翰杯</a>
+
+    <a href="/reg/sports">注册</a>
+    
+        <a href="/players/2">组队</a>
+    
+    <!--
+    <a href="/match">比赛</a>
+    <a href="/score">成绩</a>
+    <a href="/rank">排名</a>
+    -->
+    <a href="/point/players">积分</a>
+
+</div> 
+
+    <div class="topnav">
+    <a href="/point/calc">计算积分</a>
+    <a href="/point/players">选手列表</a>
+    <a href="/teams/3/31">分组列表</a>
+    <a href="/point/departments">清华院系</a>
+    <a href="/point/associations">校友分会</a>
+</div>
+
+    <h2>选手编辑</h2>
+
+    
+
+    
+
+    <h4>个人信息：</h4>
+
+    <form action="/reg/player/439" method="post">
+
+    <input type="hidden" name="id" value="439">
+    <table>
+        <tr>
+          <th>编号</th>
+          <td>439</td>
+        </tr>
+        <tr>
+          <th>中文名</th>
+          <td><input class="teamname" type="text" name='cname' value="刘洪波"></td>
+        </tr>
+        <tr>
+          <th>First Name</th>
+          <td><input class="teamname" type="text" name='first_name' value="Hongbo"></td>
+        </tr>
+        <tr>
+          <th>Last Name</th>
+          <td><input class="teamname" type="text" name='last_name' value="Liu"></td>
+        </tr>
+        <tr>
+          <th>性别</th>
+          <td>
+            <select class="tpname" name='gender'>
+              <option value="男" selected>男</option>>
+              <option value="女">女</option>>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>院系</th>
+          <td>
+            <select class="tpname" name='th_department_id'>
+                <option value="-1"></option>
+
+              
+                <option value="31">五道口金融学院</option>
+              
+                <option value="1">人文学院</option>
+              
+                <option value="2">化学系</option>
+              
+                <option value="3">化工系</option>
+              
+                <option value="4">医学院</option>
+              
+                <option value="5">土木系</option>
+              
+                <option value="6">工业工程系</option>
+              
+                <option value="7">工物系</option>
+              
+                <option value="28">工程力学系</option>
+              
+                <option value="8">建筑学院</option>
+              
+                <option value="9">数学系</option>
+              
+                <option value="10">机械系</option>
+              
+                <option value="11">材料系</option>
+              
+                <option value="12">水利系</option>
+              
+                <option value="13">汽车系</option>
+              
+                <option value="14">法学院</option>
+              
+                <option value="32">深圳研究生院</option>
+              
+                <option value="15">热能系</option>
+              
+                <option value="16">物理系</option>
+              
+                <option value="17">环境学院</option>
+              
+                <option value="18">生命学院</option>
+              
+                <option value="30">电子工程</option>
+              
+                <option value="19">电子系</option>
+              
+                <option value="20">电机系</option>
+              
+                <option value="21">社科学院</option>
+              
+                <option value="22">精仪系</option>
+              
+                <option value="29">精仪系 </option>
+              
+                <option value="23">经管学院</option>
+              
+                <option value="24">自动化系</option>
+              
+                <option value="25">航天航空学院</option>
+              
+                <option value="26" selected>计算机系</option>
+              
+                <option value="27">软件学院</option>
+              
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>分会</th>
+          <td>
+            <select class="tpname" name='th_association_id'>
+              <option value="-1"></option>
+
+            
+              <option value="42">上海</option>
+            
+              <option value="24">乔治亚</option>
+            
+              <option value="27">亚利桑那</option>
+            
+              <option value="51">亚特兰大</option>
+            
+              <option value="28">伊利诺伊大学（香槟校区）</option>
+            
+              <option value="6">休斯顿</option>
+            
+              <option value="10">佛罗里达</option>
+            
+              <option value="7">俄亥俄州哥伦布</option>
+            
+              <option value="9">俄勒冈</option>
+            
+              <option value="52">其它</option>
+            
+              <option value="41">北京</option>
+            
+              <option value="1">北卡罗来纳</option>
+            
+              <option value="3">匹兹堡</option>
+            
+              <option value="15">南加州</option>
+            
+              <option value="36" selected>南安省</option>
+            
+              <option value="34">卡尔加里</option>
+            
+              <option value="45">四川</option>
+            
+              <option value="16">圣地亚哥</option>
+            
+              <option value="20">圣路易斯</option>
+            
+              <option value="33">埃德蒙顿</option>
+            
+              <option value="17">堪萨斯</option>
+            
+              <option value="11">大华府</option>
+            
+              <option value="30">大盐湖</option>
+            
+              <option value="4">奥斯汀</option>
+            
+              <option value="26">威斯康星</option>
+            
+              <option value="21">密歇根</option>
+            
+              <option value="18">康涅狄格</option>
+            
+              <option value="49">惠州</option>
+            
+              <option value="22">明尼苏达</option>
+            
+              <option value="47">校友总会</option>
+            
+              <option value="48">江西</option>
+            
+              <option value="19">波士顿</option>
+            
+              <option value="44">泰国</option>
+            
+              <option value="38">渥太华</option>
+            
+              <option value="37">温哥华</option>
+            
+              <option value="43">湖南</option>
+            
+              <option value="50">湾区</option>
+            
+              <option value="31">科罗拉多</option>
+            
+              <option value="25">纳什维尔</option>
+            
+              <option value="23">纽约</option>
+            
+              <option value="29">芝加哥</option>
+            
+              <option value="39">英国</option>
+            
+              <option value="32">萨克拉门托</option>
+            
+              <option value="35">蒙特利尔</option>
+            
+              <option value="12">西雅图</option>
+            
+              <option value="2">费城</option>
+            
+              <option value="8">辛辛那提</option>
+            
+              <option value="5">达拉斯</option>
+            
+              <option value="40">青岛</option>
+            
+              <option value="46">香港</option>
+            
+          </select>
+          </td>
+        </tr>
+        <tr>
+          <th>体育项目</th>
+          <td>
+            <select class="tpname" id='sportId-439' name='sport_id'>
+              <option value="-1"></option>
+
+              
+                <option value="1">跑步</option>
+              
+                <option value="2">高尔夫球</option>
+              
+                <option value="3" selected>羽毛球</option>
+              
+                <option value="4">网球</option>
+              
+                <option value="5">乒乓球</option>
+              
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td><input class='actionbtn' type="submit" name="save" value="Save">
+          <input class="actionbtn" type="button" value="Button">
+<input class="actionbtn" type="reset" value="Reset">
+<input class="actionbtn" type="submit" value="Submit">
+          </td>
+        </tr>
+
+    </table>
+  
+    
+  </div>
+</body>
+</html>

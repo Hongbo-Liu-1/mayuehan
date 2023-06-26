@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navteams.ejs %>
+
+    <% if (results.status == 0) { %>
+
+    <h2><%= results.data.event.sport_name %> - <%= results.data.event.cname %></h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>中文名</th>
+          <th>英文名</th>
+          <th>性别</th>
+        <% if (results.data.event.team_size > 1) { %>
+          <th>-</th>
+          <th>编号</th>
+          <th>中文名</th>
+          <th>英文名</th>
+          <th>性别</th>
+        <% } %>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% 
+        for (const team of results.data.teams) {
+          const r = team.players[0].player;
+          const p = team.players[1] ? team.players[1].player : {};
+      %>
+        <tr>
+          <td><%= r.id %></td>
+          <td><%= r.cname %></td>
+          <td><%= r.first_name %> <%= r.last_name %></td>
+          <td><%= r.gender %></td>
+          <% if (team.team_size > 1) { %>
+          <td>-</td>
+          <td><%= p.id %></td>
+          <td><%= p.cname %></td>
+          <td><%= p.first_name %> <%= p.last_name %></td>
+          <td><%= p.gender %></td>
+          <% } %>
+        </tr>
+      <% }; %>
+      </tbody>
+    </table>
+
+    <% } else { %>
+    <h3> <%= results.message %> </h3>
+    <% } %>
+
+  </div>
+</body>
+
+</html>

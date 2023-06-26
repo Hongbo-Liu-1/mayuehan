@@ -1,0 +1,25 @@
+{
+    "extends": [
+        "tslint:latest",
+        "tslint-config-prettier"
+    ],
+    "rules": {
+        "jsdoc-format": false,
+        "no-this-assignment": false,
+        "forin": false,
+        "object-literal-sort-keys": false,
+        "max-classes-per-file": false,
+        "only-arrow-functions": false,
+        "prefer-for-of": {
+            "severity": "warning"
+        },
+        "triple-equals": {
+            "severity": "warning"
+        },
+        "no-shadowed-variable": false,
+        "no-string-literal": false,
+        "no-return-await": false,
+        "variable-name": false,
+        "member-ordering": false
+    }
+}

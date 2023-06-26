@@ -1,0 +1,382 @@
+html {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    position: relative;
+    font-size: 10px
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    color: #444;
+    text-rendering: optimizeLegibility
+}
+
+button {
+    border: none
+}
+
+* {
+    font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif
+}
+
+code, kbd, pre, samp, code * {
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace !important
+}
+
+.light {
+    font-weight: 200
+}
+
+.semilight {
+    font-weight: 300
+}
+
+.normal, .regular {
+    font-weight: 400
+}
+
+.semibold {
+    font-weight: 600
+}
+
+b, .bold {
+    font-weight: 700
+}
+
+h1, h2, h3 {
+    font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    font-weight: 100
+}
+
+h1, .faux-h1 {
+    font-size: 3rem
+}
+
+h2, .faux-h2 {
+    font-size: 2.2rem
+}
+
+h3, .faux-h3 {
+    font-size: 1.8rem
+}
+
+h4, .faux-h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase
+}
+
+a {
+    color: #0072be;
+    text-decoration: none
+}
+
+a:hover, a:focus {
+    text-decoration: underline
+}
+
+blockquote {
+    font-size: 1.6rem
+}
+
+textarea {
+    resize: none;
+    overflow-y: scroll
+}
+
+.visible {
+    visibility: 'visible'
+}
+
+button, .link-button {
+    font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 15px 35px;
+    display: inline-block;
+    color: inherit;
+    cursor: pointer
+}
+
+.link-button:hover {
+    text-decoration: none;
+    color: inherit
+}
+
+.dlink {
+    cursor: pointer
+}
+
+.main-container {
+    min-height: 100%;
+    position: relative
+}
+
+.body-content {
+    padding-top: 25px;
+    padding-bottom: 40px
+}
+
+.navbar-fixed-container {
+    background-color: #845ac7;
+    height: 50px
+}
+
+.navbar {
+    font-size: 16px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0
+}
+
+.navbar {
+    font-size: 16px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0
+}
+
+#nav-download .download-icon {
+    display: inline
+}
+
+#nav-download .download-icon-inverted {
+    display: none
+}
+
+.navbar .navbar-brand {
+    position: relative;
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: left 50%;
+    padding-left: 36px;
+    font-size: 20px;
+    letter-spacing: -0.04rem;
+    color: white;
+    min-height: 50px;
+    padding-top: 15px;
+    line-height: 20px
+}
+
+.navbar-inverse {
+    background: #845ac7;
+    border: none;
+    margin-bottom: 0
+}
+
+.navbar-inverse.navbar-fixed-top::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    -webkit-box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.33);
+    -moz-box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.33);
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.33);
+    transition: all 0.2s ease-out
+}
+
+.navbar-inverse.navbar-fixed-top.affix::before {
+    opacity: 1
+}
+
+.navbar-inverse.home {
+    width: 100%
+}
+
+.navbar li>a {
+    cursor: pointer;
+    padding-left: 12px;
+    padding-right: 12px
+}
+
+.navbar-right {
+    height: 50px
+}
+
+.navbar-left li>a {
+    opacity: 0.6;
+    -webkit-transition: opacity 0.08s ease-in;
+    -moz-transition: opacity 0.08s ease-in;
+    -o-transition: opacity 0.08s ease-in;
+    transition: opacity 0.08s ease-in
+}
+
+.navbar-left li>a:hover {
+    opacity: 1
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    opacity: 1;
+    background: none
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #fff
+}
+
+.navbar .navbar-right {
+    display: block
+}
+
+.navbar .search-icon {
+    display: inline
+}
+
+.navbar .search-btn .search-icon-inverted {
+    display: none
+}
+
+.navbar .navbar-right .link-button {
+    color: #fff;
+    font-size: 16px;
+    line-height: 100%;
+    padding: 17px 20px;
+    height: 50px
+}
+
+.navbar-collapse {
+    border: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none
+}
+
+.navbar-inverse .navbar-toggle, .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+    border: none
+}
+
+.navbar-inverse .navbar-toggle:focus {
+    background-color: transparent
+}
+
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: rgba(94, 87, 184, 0.6)
+}
+
+.navbar-header .search {
+    position: relative;
+    float: right;
+    width: 150px
+}
+
+.navbar-header .search-btn {
+    position: relative;
+    float: right;
+    margin-top: 8px;
+    border: none
+}
+
+button, .link-button {
+    font-family: "Segoe UI", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 15px 35px;
+    display: inline-block;
+    color: inherit;
+    cursor: pointer
+}
+
+.link-button:hover {
+    text-decoration: none;
+    color: inherit
+}
+
+.download-button, .navbar .navbar-right .link-button {
+    background-color: #477a32
+}
+
+.download-button:hover, .navbar .navbar-right .link-button:hover, .download-button:active, .navbar .navbar-right .link-button:active, .download-button:focus, .navbar .navbar-right .link-button:focus {
+    background-color: #58973e
+}
+
+.updates-banner .container {
+    padding: 0
+}
+
+.updates-banner .container p {
+    text-align: center;
+    margin: 1.1rem 0;
+    padding-right: 1.2rem;
+    padding-left: 1.2rem
+}
+
+.errors .container {
+    padding-top: 8%
+}
+
+.table-bordered {
+    border: 1px solid #0072be;
+}
+
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border: 1px solid #0072be;
+}
+
+.table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border-bottom-width: 2px
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 10px;
+}
+
+th {
+    text-align: center;
+    background-color: #b3deff;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+form {
+    margin: 0;
+    width: 500px;
+    /* To see the outline of the form */
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+  }
+  
+  form div + div {
+    margin-top: 1em;
+  }
+  
+  label {
+    /* To make sure that all labels have the same size and are properly aligned */
+    display: inline-block;
+    width: 60px;
+    text-align: right;
+  }
+
+  .button {
+    /* To position the buttons to the same position of the text fields */
+    padding-left: 90px; /* same size as the label elements */
+  }
+  
+  button {
+    /* This extra margin represent roughly the same space as the space
+       between the labels and their text fields */
+    margin-left: .5em;
+  }

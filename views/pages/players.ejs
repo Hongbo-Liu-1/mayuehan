@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navPoint.ejs %>
+
+    <h3>选手积分列表</h3>
+
+    <% if (results.status == 0) { %>
+    本页用于查询选手积分。
+    修改选手信息请到<a href="/reg/players">注册页面</a>。<p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>计数</th>
+          <th><a href="/point/players?orderBy=id">编号</a></th>
+          <th><a href="/point/players?orderBy=cname">中文名</a></th>
+          <th><a href="/point/players?orderBy='first_name, last_name'">英文名</a></th>
+          <th><a href="/point/players?orderBy=gender">性别</a></th>
+          <th><a href="/point/players?orderBy=th_department_id">院系</a></th>
+          <th><a href="/point/players?orderBy=th_association_id">分会</a></th>
+          <th><a href="/point/players?orderBy=sport_id">类别</a></th>
+          <th><a href="/point/players?orderBy='points DESC'">积分</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let i=0; i<results.data.length; i++) {
+            const r = results.data[i];
+        %>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= r.id %></td>
+          <td><a href="/point/player/<%= r.id %>"><%= r.cname %></a></td>
+          <td><a href="/point/player/<%= r.id %>"><%= r.first_name %> <%= r.last_name %></a></td>
+          <td><%= r.gender %></td>
+          <td><%= r.th_department_name %></td>
+          <td><%= r.th_association_name %></td>
+          <td><%= r.sport_name %></td>
+          <td><%= r.points %></td>
+        </tr>
+        <% }; %>
+      </tbody>
+    </table>
+
+    <% } else { %>
+    <h3> <%= results.message %> </h3>
+    <% } %>
+  </div>
+</body>
+
+</html>

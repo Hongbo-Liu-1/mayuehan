@@ -1,0 +1,21 @@
+<% if (results && results.data && results.data.event && results.data.events ) { %>
+<div class="topnav">
+    <div class="dropdown">
+        <button class="dropbtn"><%= results.data.event.sport_name %>
+        </button>
+        <div class="dropdown-content">
+            <a href="/players/1?orderBy='points DESC'">跑步</a>
+            <a href="/players/2?orderBy='points DESC'">高尔夫球</a>
+            <a href="/players/3?orderBy='points DESC'">羽毛球</a>
+            <a href="/players/4?orderBy='points DESC'">网球</a>
+            <a href="/players/5?orderBy='points DESC'">乒乓球</a>
+        </div>
+    </div>
+
+    <a href="/players/<%= results.data.event.sport_id %>?orderBy='points DESC'">选手</a>
+
+    <% results.data.events.forEach(e => { %>
+        <a href="/teams/<%= e.sport_id %>/<%= e.id %>?orderBy='points DESC'"><%= e.cname %></a>
+    <% }); %>
+</div>
+<% }; %>

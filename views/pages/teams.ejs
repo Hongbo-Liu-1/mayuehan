@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+
+  <% include ../partials/teams.rank.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navTeams.ejs %>
+
+    <% if (results.status == 0) { %>
+
+    <h3><%= results.data.event.sport_name %> - <%= results.data.event.cname %></h3>
+
+    <% if (user.user_type == 'ops' || (user.user_type == 'admin' && user.sport_id == results.data.event.sport_id)) { %>
+    <p><a type='button' class="actionbtn" href="/team/<%= results.data.event.sport_id %>/<%= results.data.event.id %>/New">组建新队</a></p>
+    <% } %>
+
+    <table>
+      <thead>
+        <tr>
+          
+          <th>队员</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% for (let i=0; i<results.data.teams.length; i++) {
+          const team = results.data.teams[i];
+      %>
+        <tr>         
+          
+          <td>
+          <% 
+            for (let j = 0; j < team.players.length; j++) {
+              const r = team.players[j].player;
+              const id = r.id;
+              let n = (r.cname || '').trim();
+          %>
+                <a href="/point/player/<%= id %>"><%= n %></a>
+          <%  
+              if (j < team.players.length - 1) {
+          %>
+                <br>
+          <%
+              }
+            }
+          %>
+          </td>
+
+        </tr>
+      <% }; %>
+      </tbody>
+    </table>
+
+    <% } else { %>
+    <h3> <%= results.message %> </h3>
+    <% } %>
+
+  </div>
+</body>
+
+</html>

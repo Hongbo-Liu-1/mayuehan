@@ -1,0 +1,9 @@
+<div class="topnav">
+    <% if (typeof user == 'object' && user.user_type == 'ops') { %>
+    <a href="/point/calc">计算积分</a>
+    <% } %>
+    <a href="/point/players?orderBy='points DESC'">选手列表</a>
+    <a href="/teams/3/31?orderBy='points DESC'">分组列表</a>
+    <a href="/point/departments?orderBy='points DESC'">清华院系</a>
+    <a href="/point/associations?orderBy='points DESC'">校友分会</a>
+</div>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+  <div class="container">
+        <% include ../partials/nav.ejs %>
+
+        <p>&nbsp;</p>
+        <form class="upload" action="/user/login" method="post">
+          <table style='border:0'>
+            <tr>
+              <td style='border:0'>Username:</td>
+              <td style='border:0'><input type="text" name="username"></td>
+            </tr>
+            <tr style='background-color:white'>
+                <td style='border:0'>Password:</td>
+                <td style='border:0'><input type="password" name="password"></td>
+              </tr>
+            <tr>
+              <td style='border:0'>&nbsp;</td>
+              <td style='border:0'><input type="submit" value="Log In"></td>
+            </tr>
+          </table>
+        </form>
+
+    </div>
+</body>
+</html>

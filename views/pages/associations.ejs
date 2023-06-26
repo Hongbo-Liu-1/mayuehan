@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+  <% include ../partials/associations.onlineRun.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navPoint.ejs %>
+
+    <h2>清华校友分会</h2>
+
+    <% if (results.status == 0) { %>
+
+    <table>
+      <thead>
+        <tr>
+          <th>计数</th>
+          <th><a href="/point/associations?orderBy=id">编号</a></th>
+          <th><a href="/point/associations?orderBy=cname">名字</a></th>
+          <th><a href="/point/associations?orderBy=online_run_join">参与线上跑步</a></th>
+          <th><a href="/point/associations?orderBy='online_run_rank,online_run_join'">线上跑步名次</a></th>
+          <th><a href="/point/associations?orderBy='online_run_points DESC'">线上跑步积分</a></th>
+          <th><a href="/point/associations?orderBy='points DESC'">总积分</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let i=0; i<results.data.length; i++) {
+            const r = results.data[i];
+        %>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= r.id %></td>
+          <td><a href="/point/association/<%= r.id %>?orderBy='points DESC'"><%= r.cname %></a></td>
+          
+          <% if (user.user_type == 'ops' || (user.user_type == 'admin' && user.sport_id == results.data.event.sport_id)) { %>
+            <td><input class="rank" type="checkbox" id="online_run_join-<%= r.id %>" value="<%= r.online_run_join %>" <%= r.online_run_join ? 'checked' : '' %>></td>
+            <td><input class="rank" type="text" id="online_run_rank-<%= r.id %>" value="<%= r.online_run_rank %>"></td>
+          <% } else { %>
+            <td><%= r.online_run_join ? '参与' : '' %></td>
+            <td><%= r.online_run_rank %></td>
+          <% } %>
+
+          <td><%= r.online_run_points %></td>
+          <td><%= r.points %></td>
+        </tr>
+        <% }; %>
+      </tbody>
+    </table>
+
+    <% } else { %>
+    <h3> <%= results.message %> </h3>
+    <% } %>
+  </div>
+</body>
+
+</html>

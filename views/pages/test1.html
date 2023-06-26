@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("[id|=online_run_]").focusin(function () {
+            $(this).css("background-color", "#FFFFCC");
+        });
+
+        $("[id|=online_run_join]").change(function () {
+            alert('Hi ! ' +
+            	'\n default = ' + $(this).defaultChecked + 
+            	'\n checked = ' + $(this).checked +
+                '\n default2 = ' + $(this).prop("defaultValue") +
+                '\n checked2 = ' + $(this).val()
+            
+            );
+        });
+
+    });
+
+</script>
+</head>
+<body>
+
+Checkbox:<input type="checkbox" id="online_run_join" checked>
+
+<p>Click the "Try it" button to find out if the checkbox is checked by 
+default.</p>
+
+<button type="button" onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("online_run_join").defaultChecked;
+  document.getElementById("demo").innerHTML = x;
+}
+</script>
+
+</body>
+</html>

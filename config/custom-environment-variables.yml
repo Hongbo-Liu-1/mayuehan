@@ -1,0 +1,38 @@
+status:
+  active: STATUS_ACTIVE
+  activeCheckInterval: STATUS_ACTIVE_CHECK_INTERVAL
+  healthCheckInterval: STATUS_HEALTH_CHECK_INTERVAL
+winston:
+  level: WINSTON_LEVEL
+db:
+  host: DB_HOST
+  database: DB_DATABASE
+  username: DB_USERNAME
+  password: DB_PASSWORD
+  statementTimeout: DB_STATEMENT_TIMEOUT
+  maxConnections: DB_MAX_CONNECTIONS
+  idleConnectionTimeout: DB_IDLE_CONNECTION_TIMEOUT
+  connectionTimeout: DB_CONNECTION_TIMEOUT
+  ssl: DB_SSL
+  ca: DB_CA
+webApp:
+  http:
+    enable: ENABLE_HTTP
+    port: HTTP_PORT
+  https:
+    enable: ENABLE_HTTPS
+    port: HTTPS_PORT
+    publicKeyPath: HTTPS_PUBLIC_KEY_PATH
+    privateKeyPath: HTTPS_PRIVATE_KEY_PATH
+    privateKeyPassword: HTTPS_PRIVATE_KEY_PASSWORD
+    caBundlePath: HTTPS_CA_BUNDLE_PATH
+  bodyLimit:
+    json: JSON_BODY_LIMIT
+    text: TEXT_BODY_LIMIT
+    urlencoded: URLENCODED_BODY_LIMIT
+    raw: RAW_BODY_LIMIT
+circuitBreaker:
+  statisticalWindow: CIRCUIT_BREAKER_STATISTICAL_WINDOW
+  sleepWindow: CIRCUIT_BREAKER_SLEEP_WINDOW
+  requestVolumeThreshold: CIRCUIT_BREAKER_REQUEST_VOLUME_THRESHOLD
+  dbRequestTimeout: CIRCUIT_BREAKER_DB_REQUEST_TIME_OUT

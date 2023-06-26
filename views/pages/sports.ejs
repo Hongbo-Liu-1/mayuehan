@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navreg.ejs %>
+
+    <h2>比赛项目</h2>
+
+    <% if (results.status == 0) { %>
+
+    <table>
+      <thead>
+        <tr>
+          <th>计数</th>
+          <th>类别</th>
+          <th>项目</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let i=0; i<results.data.length; i++) {
+            const e = results.data[i];
+        %>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= e.sport_name %></td>
+          <td><a href="/teams/<%= e.sport_id %>/<%= e.id %>?orderBy='points DESC'"><%= e.cname %></a></td>
+        </tr>
+        <% }; %>
+      </tbody>
+    </table>
+
+    <% } else { %>
+    <h3> <%= results.message %> </h3>
+    <% } %>
+    
+  </div>
+</body>
+
+</html>

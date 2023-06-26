@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navPoint.ejs %>
+
+    <h2>清华院系</h2>
+
+    <% if (results.status == 0) { %>
+
+    <table>
+      <thead>
+        <tr>
+          <th>计数</th>
+          <th><a href="/point/departments?orderBy=id">编号</a></th>
+          <th><a href="/point/departments?orderBy=cname">名字</a></th>
+          <th><a href="/point/departments?orderBy='points DESC'">总积分</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let i=0; i<results.data.length; i++) {
+            const r = results.data[i];
+        %>
+        <tr>
+          <td><%= i+1 %></td>
+          <td><%= r.id %></td>
+          <td><a href="/point/department/<%= r.id %>?orderBy='points DESC'"><%= r.cname %></a></td>
+          <td><%= r.points %></td>
+        </tr>
+        <% }; %>
+      </tbody>
+    </table>
+
+    <% } else { %>
+    <h3> <%= results.message %> </h3>
+    <% } %>
+  </div>
+
+</body>
+
+</html>

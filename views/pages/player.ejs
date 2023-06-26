@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navPoint.ejs %>
+
+    <h2>选手列表</h2>
+
+    <% if (results.status == 0) { %>
+
+    <h3><%= results.data.player.cname || results.data.player.first_name + ' ' + results.data.player.last_name %> - 总积分：<%= results.data.player.points %> </h3>
+
+    <h4>个人信息：</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>中文名</th>
+          <th>英文名</th>
+          <th>性别</th>
+          <th>院系</th>
+          <th>分会</th>
+          <th>类别</th>
+          <th>积分</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% const r = results.data.player; %>
+        <tr>
+          <td><%= r.id %></td>
+          <td><%= r.cname %></td>
+          <td><%= r.first_name %> <%= r.last_name %></td>
+          <td><%= r.gender %></td>
+          <td><%= r.th_department_name %></td>
+          <td><%= r.th_association_name %></td>
+          <td><%= r.sport_name %></td>
+          <td><%= r.points %></td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <h4>参加项目：</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>组名</th>
+          <th>类别</th>
+          <th>项目</th>
+          <th>队员</th>
+          <th>名次</th>
+          <th>积分</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% 
+        for (let team of results.data.teams) {
+      %>
+        <tr>
+          <td><%= team.id %></td>
+          <td><%= team.team_name %></td>
+          <td><%= team.sport_name %></td>
+          <td><%= team.event_name %></td>
+
+          <td>
+          <% for (let i = 0; i < team.players.length; i++) {
+              const r = team.players[i].player;
+              const n = (r.cname || r.first_name + ' ' + r.last_name) + '/' + r.gender;
+          %>
+          <%= n %>
+          <%  if (i < team.players.length -1) { %>
+          <br>
+          <% }} %>
+          </td>
+
+          <td><%= team.rank %></td>
+          <td><%= team.points %></td>
+          <td><%= team.note %></td>
+        </tr>
+      <% }; %>
+      </tbody>
+    </table>
+
+    <% } else { %>
+    <h3> <%= results.message %> </h3>
+    <% } %>
+  </div>
+</body>
+
+</html>

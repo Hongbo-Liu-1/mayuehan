@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navreg.ejs %>
+
+    <h2>比赛报名</h2>
+    <p>
+      上传体育比赛的报名文件，必须是Excel(.xlsx)文件。
+      <p>
+        文件内容将用于更新比赛选手数据。
+
+        <% if (results.data === 'update') { %>
+          <h3 style='color:red'>警告：所有组队将被从新设置！</h3>
+        <% } %>
+
+        <p>&nbsp;</p>
+        <form class="upload" action="/reg/upload2" method="post" enctype="multipart/form-data">
+          <table style='border:0'>
+            <tr>
+              <td style='border:0'><label for="sport">体育项目:</label></td>
+              <td style='border:0'>
+                <select name="sport">
+                  <option value="晨跑">晨跑</option>
+                  <option value="跑步">跑步</option>
+                  <option value="高尔夫球">高尔夫球</option>
+                  <option value="网球">网球</option>
+                  <option value="羽毛球">羽毛球</option>
+                  <option value="乒乓球">乒乓球</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td style='border:0'><label for="players">报名文件:</label></td>
+              <td style='border:0'><input type="file" name="players" id="players" accept=".xlsx"></td>
+            </tr>
+            <tr>
+              <td style='border:0'>&nbsp;<input type="hidden" name="action" value="<%= results.data %>"></td>
+              <td style='border:0'><input type="submit" name="submit" value="开始上传" name="submit"></td>
+            </tr>
+          </table>
+        </form>
+
+  </div>
+
+</body>
+
+</html>

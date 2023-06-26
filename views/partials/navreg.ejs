@@ -1,0 +1,14 @@
+<div class="topnav">
+
+    <a href="/reg/players">选手列表</a>
+    <a href="/reg/sports">比赛项目</a>
+
+    <% if (typeof user == 'object' && user.user_type == 'ops') { %>
+        <a href="/reg/upload1">大会注册-比较</a>
+        <a href="/reg/upload1c">大会注册-修改</a>
+        <a href="/reg/upload2">比赛报名-比较</a>
+        <a href="/reg/upload2u">比赛报名-修改</a>
+        <a href="/reg/upload3">单项报名-比较</a>
+        <a href="/reg/upload3u">单项报名-修改</a>
+    <% } %>
+</div>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navreg.ejs %>
+
+    <h3>选手注册列表</h3>
+
+    <% if (results.status == 0) { %>
+      本页列出所有选手的基本信息以供修改。
+      查询积分请到<a href="/point/players?orderBy='points DESC'">积分页面</a>。<p>
+
+      <% if (user.user_type == 'ops' || (user.user_type == 'admin')) { %>
+        <p><a type='button' class="actionbtn" href="/reg/player/New">新选手</a></p>
+      <% } %>
+    
+      <table>
+        <thead>
+          <tr>
+            <th>计数</th>
+            <th><a href="/reg/players?orderBy=id">编号</a></th>
+            <th><a href="/reg/players?orderBy=cname">中文名</a></th>
+            <th><a href="/reg/players?orderBy='first_name, last_name'">英文名</a></th>
+            <th><a href="/reg/players?orderBy=gender">性别</a></th>
+            <th><a href="/reg/players?orderBy=th_department_id">院系</a></th>
+            <th><a href="/reg/players?orderBy=th_association_id">分会</a></th>
+            <th><a href="/reg/players?orderBy=sport_id">类别</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let i=0; i<results.data.length; i++) {
+              const r = results.data[i];
+          %>
+          <tr>
+            <td><%= i+1 %></td>
+
+            <% if (user.user_type == 'ops' || user.user_type == 'admin') { %>
+              <td><a href="/reg/player/<%= r.id %>"><%= r.id %></a></td>
+              <td><a href="/reg/player/<%= r.id %>"><%= r.cname %></a></td>
+              <td><a href="/reg/player/<%= r.id %>"><%= r.first_name %> <%= r.last_name %></a></td>
+            <% } else { %>
+              <td><%= r.id %></td>
+              <td><%= r.cname %></td>
+              <td><%= r.first_name %> <%= r.last_name %></td>
+            <% } %>
+          
+            <td><%= r.gender %></td>
+            <td><%= r.th_department_name %></td>
+            <td><%= r.th_association_name %></td>
+            <td><%= r.sport_name %></td>
+          </tr>
+          <% }; %>
+        </tbody>
+      </table>
+
+    <% } else { %>
+      <h3> <%= results.message %> </h3>
+    <% } %>
+  </div>
+</body>
+
+</html>

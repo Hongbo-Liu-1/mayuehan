@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Show upload result for Running -->
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navreg.ejs %>
+
+    <h2>比赛报名匹配结果</h2>
+
+    <% if (results.status == 0) { %>
+
+      <p>下列选手不在数据库中，需要创建新数据。</p>
+      <table>
+        <thead>
+          <tr>
+            <th>中文名</th>
+            <th>英文名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>院系</th>
+            <th>分会</th>
+            <th>类别</th>
+            <th>接力队名</th>
+            <th>接力队员</th>
+            <th>晨跑</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% results.data.sheet.forEach(q => { 
+            r = q.rawPlayer;
+            if (q.action === 'new') {
+          %>
+          <tr>
+            <td><%= r.cname %></td>
+            <td><%= r.first_name %> <%= r.last_name %></td>
+            <td><%= r.gender %></td>
+            <td><%= r.age %></td>
+            <td><%= r.th_department_name %></td>
+            <td><%= r.th_association_name %></td>
+            <td><%= r.sport_name %></td>
+            <td><%= q['接力队名（参加接力者必填）'] %></td>
+            <td><%= q['接力队友姓名/年龄（参加接力者必填）'] %></td>
+            <td><%= q['报名9.21晨跑'] %></td>
+          </tr>
+          <% }}); %>
+        </tbody>
+      </table>
+  
+  
+      <p>下列选手与系统中数据不同，系统数据需要修改。</p>
+      <table>
+        <thead>
+          <tr>
+            <th>中文名</th>
+            <th>英文名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>院系</th>
+            <th>分会</th>
+            <th>类别</th>
+            <th>-</th>
+            <th>编号</th>
+            <th>中文名</th>
+            <th>英文名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>院系</th>
+            <th>分会</th>
+            <th>类别</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% results.data.sheet.forEach(q => { 
+            r = q.rawPlayer;
+            p = q.dbPlayer;
+            if (q.action === 'update') {
+          %>
+          <tr>
+            <td><%= r.cname %></td>
+            <td><%= r.first_name %> <%= r.last_name %></td>
+            <td><%= r.gender %></td>
+            <td><%= r.age %></td>
+            <td><%= r.th_department_name %></td>
+            <td><%= r.th_association_name %></td>
+            <td><%= r.sport_name %></td>
+            <td>-</td>
+            <td><%= p.id %></td>
+            <td><%= p.cname %></td>
+            <td><%= p.first_name %> <%= p.last_name %></td>
+            <td><%= p.gender %></td>
+            <td><%= p.age %></td>
+            <td><%= p.th_department_name %></td>
+            <td><%= p.th_association_name %></td>
+            <td><%= p.sport_name %></td>
+          </tr>
+          <% }}); %>
+        </tbody>
+      </table>
+  
+      
+      <p>下列选手与系统中数据相同，不需要修改。</p>
+      <table>
+        <thead>
+          <tr>
+            <th>中文名</th>
+            <th>英文名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>院系</th>
+            <th>分会</th>
+            <th>类别</th>
+            <th>-</th>
+            <th>编号</th>
+            <th>中文名</th>
+            <th>英文名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>院系</th>
+            <th>分会</th>
+            <th>类别</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% results.data.sheet.forEach(q => { 
+            r = q.rawPlayer;
+            p = q.dbPlayer;
+            if (q.action === 'none') {
+          %>
+          <tr>
+            <td><%= r.cname %></td>
+            <td><%= r.first_name %> <%= r.last_name %></td>
+            <td><%= r.gender %></td>
+            <td><%= r.age %></td>
+            <td><%= r.th_department_name %></td>
+            <td><%= r.th_association_name %></td>
+            <td><%= r.sport_name %></td>
+            <td>-</td>
+            <td><%= p.id %></td>
+            <td><%= p.cname %></td>
+            <td><%= p.first_name %> <%= p.last_name %></td>
+            <td><%= p.gender %></td>
+            <td><%= p.age %></td>
+            <td><%= p.th_department_name %></td>
+            <td><%= p.th_association_name %></td>
+            <td><%= p.sport_name %></td>
+          </tr>
+          <% }}); %>
+        </tbody>
+      </table>
+  
+    <% } else { %>
+    <h3> <%= results.message %> </h3>
+    <% } %>
+
+  </div>
+  <p>
+    &nbsp;
+    <p>
+</body>
+
+</html>

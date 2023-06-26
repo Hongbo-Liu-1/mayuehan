@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "allowJs": false,
+        "target": "es6",
+        "module": "commonjs",
+        "resolveJsonModule": true,
+        "lib": ["es6"],
+        //"types": ["reflect-metadata"],
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "types": ["node"],
+        "typeRoots": ["node_modules/@types"]
+    },
+    "exclude": [
+    ]
+}

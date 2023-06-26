@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ../partials/header.ejs %>
+</head>
+
+<body>
+  <div class="container">
+    <% include ../partials/nav.ejs %>
+    <% include ../partials/navTeams.ejs %>
+
+    <% if (results.status == 0) { %>
+
+    <h2><%= results.data.event.sport_name %> - <%= results.data.event.cname %></h2>
+    <form action="/team/<%= results.data.team.sport_id %>/<%= results.data.team.event_id %>/<%= results.data.team.id || 'New' %>" method="post">
+    
+    <table>
+        <tr>
+          <th>组号</th>
+          <td><%= results.data.team.id %></td>
+        </tr>
+        <tr>
+          <th>组名</th>
+          <td><input class="teamname" type="text" id="teamName" name='teamName' value="<%= results.data.team.team_name %>"></td>
+        </tr>
+
+        <% for (let i=0; i<results.data.event.team_size; i++) { 
+            let p = {};
+            let pn = '';
+            if (results.data.team.players[i]) {
+              p = results.data.team.players[i].player;
+              pn = ((p.cname || '') + ' ' + (p.first_name || '') + ' ' + (p.last_name || '')).trim() + '|' + p.gender;
+            }
+        %>
+
+        <tr>
+          <th>成员</th>
+          <td>
+              <select class="tpname" id='playerId-<%= i-%>' name='playerId-<%= i-%>'>
+                <option value="-1"></option>
+                <option value="<%= p.id %>" selected><%= pn %></option>
+
+                <% results.data.candidates.forEach(c => {
+                    const cn = ((c.cname || '') + ' ' + (c.first_name || '') + ' ' + (c.last_name || '')).trim() + '|' + c.gender;
+                %>
+                <option value="<%= c.id %>"><%= cn %></option>
+                <% }) %>
+
+              </select>
+          </td>
+        </tr>
+        <% } %>
+
+        <tr>
+          <th>名次</th>
+          <td><input class="rank" type="text" id="rank" name='rank' value="<%= results.data.team.rank %>"></td>
+        </tr>
+        <tr>
+          <th>积分</th>
+          <td><%= results.data.team.points %></td>
+        </tr>
+
+        <tr>
+          <td>    
+            <input class='actionbtn' type="submit" name="save" value="Save">
+          </td>
+          <td>
+            <input class='actionbtn' type="submit" name="delete" value="Delete" onclick="return confirm('Are you sure you want to delete the team ?');">
+          </td>
+        </tr>
+    </table>
+
+    </form>
+
+    <% } else { %>
+    <h3> <%= results.message %> </h3>
+    <% } %>
+
+  </div>
+</body>
+
+</html>

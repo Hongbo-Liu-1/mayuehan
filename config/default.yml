@@ -1,0 +1,51 @@
+status:
+  active: false
+  activeCheckInterval: 10s
+  healthCheckInterval: 10s
+winston:
+  level: debug
+  transports:
+    - type: Console
+      silent: false
+      colorize: true
+      stderrLevels: [fatal, error]
+    - type: DailyRotateFile
+      silent: false
+      datePattern: YYYY-MM-DD[T]HH[Z]
+      filename: mayuehan.%DATE%.log
+      dirname: logs
+      maxSize: 20m
+      maxFiles: null
+      json: false
+db:
+  #host: <the host of the PostqreSQL instance>
+  #database: <the name of the PostgreSQL database>
+  #username: <the username for PostgreSQL instance user, preferred to set via environment variable>
+  #password: <the password for PostgreSQL instance user, preferred to set via environment variable>
+  statementTimeout: 10s
+  maxConnections: 50
+  idleConnectionTimeout: 30min
+  connectionTimeout: 30s
+  ssl: true
+  ca: config/rds-combined-ca-bundle.pem
+webApp:
+  http:
+    enable: true
+    port: 8100
+  https:
+    enable: false
+    port: 8443
+    #publicKeyPath: <the path to the public key file>
+    #privateKeyPath: <the path to the private key file>
+    #privateKeyPassword: <the private key file password, preferred to set via environment variable>
+    #caBundlePath: <the path to the CA bundle file>
+  bodyLimit:
+    json: 10mb
+    text: 10mb
+    urlencoded: 10mb
+    raw: 10mb
+circuitBreaker:
+  sleepWindow: 30s
+  statisticalWindow: 100s
+  requestVolumeThreshold: 100
+  dbRequestTimeout: 20s
